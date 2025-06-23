@@ -1,0 +1,13 @@
+# SPIRE_ZK
+
+This repository contains the SPIRE_ZK project with CUDA-accelerated implementations for cryptographic operations.
+
+---
+
+## Overview
+
+This project depends on NVIDIA CUDA to compile and run GPU-accelerated code. It requires a CUDA-enabled machine with the appropriate NVIDIA drivers and CUDA toolkit installed.
+
+---
+
+rm
