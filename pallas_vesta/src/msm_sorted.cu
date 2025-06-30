@@ -155,13 +155,21 @@ __global__ void sum_medium_bucket(__const__ Point *point, Point *sum, uint32_t *
         bucket += stride;
     }
 }
+__global__ void gather_buckets(__const__ Point *buckets, size_t bucket_count)
+{
+    size_t idx = blockIdx.x * blockDim.x + threadIdx.x;
+    size_t bucket_sum_id = blockIdx.x;
+    size_t curr_window = blockIdx.y;
+    __shared__ Point bucket_result[ blockDim.x ];
+    if(idx < bucket_count)
+    {
+        bucket_result[idx] = buckets[idx];
+        __syncthreads();
+        
+    }
+}
 void sum_large_bucket()
 {
-    
-}
-__global__ void gather_buckets()
-{
-
 }
 void accumulateResult()
 {
@@ -242,6 +250,11 @@ Point* cuda_pippenger_msm(Point *points, Scalar *scalars, size_t num_points)
         }
     }
     for(int i=0; i<largeBuckets.size(); i++)
+    {
+        gridSize = (h_count[largeBuckets[i]] + mediumBucketSize - 1)/ mediumBucketSize;
+        
+
+    }
         sum_large_bucket(largeBuckets[i], buckets, large);
     CUDA_CHECK(cudaDeviceSynchronize());
 
