@@ -70,8 +70,8 @@ fn main() {
     if nvcc.is_ok() {
         let mut nvcc = cc::Build::new();
         nvcc.cuda(true);
-        nvcc.flag("-arch=sm_80");
-        nvcc.flag("-gencode").flag("arch=compute_70,code=sm_70");
+        nvcc.flag("-arch=sm_86");
+        nvcc.flag("-gencode").flag("arch=compute_86,code=sm_86");
         nvcc.flag("-t0");
         #[cfg(not(target_env = "msvc"))]
         nvcc.flag("-Xcompiler").flag("-Wno-unused-function");
