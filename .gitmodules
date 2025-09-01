@@ -1,3 +1,0 @@
-[submodule "DockerSetup/cuZK"]
-	path = DockerSetup/cuZK
-	url = https://github.com/speakspeak/cuZK.git
